@@ -2,6 +2,10 @@
 
 This script checks which workspace is active and takes care of the action.
 
+## Requirements:
+
+* [nodejs](https://nodejs.org/en/download/package-manager/)
+
 ## Example usage:
 
 When adding `bindsym $mod+F2 exec "node ~/path/to/i3-individual-workspace-actions/main.js"` to the i3 config, it will call this script when using mod+F2.
