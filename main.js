@@ -2,19 +2,24 @@ const { exec } = require("child_process");
 const fs = require("fs");
 
 const execWsSpecificAction = async (wsNumber) => {
-  const arg = "loremipsum";
   const config = await readConfig();
-  const possibleActions = config[arg];
+  const requestedAction = process.argv[2];
 
-  const action = hasProperty(possibleActions, wsNumber)
-    ? possibleActions[wsNumber]
-    : possibleActions["default"];
+  if (hasProperty(config, requestedAction)) {
+    const availableActions = config[requestedAction];
 
-  exec(action);
+    const action = hasProperty(availableActions, wsNumber)
+      ? availableActions[wsNumber]
+      : availableActions["default"];
+    exec(action);
+  } else {
+    exec("notify-send 'action not found'");
+  }
 };
 
 const readConfig = async () => {
-  return JSON.parse(fs.readFileSync("./config.json"));
+  const currentFolder = process.argv[1].substr(0, process.argv[1].lastIndexOf("\/"));
+  return JSON.parse(fs.readFileSync(`${currentFolder}/config.json`));
 };
 
 const getFocusedWorkspace = (arrayOfWorkspaces) => {
