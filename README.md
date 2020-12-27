@@ -26,7 +26,7 @@ bindsym $mod+F2 exec "node ~/path/to/i3-individual-workspace-actions/main.js lor
 
 The end of that line is the argument that we pass. In this case it is `loremipsum` which will be the key that will be used when looking for actions in the config file.
 
-When pressing mod+F2 it will now open the *w3schools* website in your browser as default. When on WS7, it will instead open *unsplash* in your browser.
+When pressing mod+F2 it will now open the *w3schools* website in your browser as default. When on WS7, it will instead open the *unsplash* website in your browser.
 
 ## Example config
 ```
