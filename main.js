@@ -1,19 +1,25 @@
 const { exec } = require("child_process");
+const fs = require("fs");
 
-const execWsSpecificCommand = (wsNumber) => {
-  switch (wsNumber) {
-    case 7:
-      exec("google-chrome-stable --new-window trello.com");
-      break;
-    default:
-      exec("google-chrome-stable");
-      break;
-  }
+const execWsSpecificAction = async (wsNumber) => {
+  const arg = "loremipsum";
+  const config = await readConfig();
+  const possibleActions = config[arg];
+
+  const action = hasProperty(possibleActions, wsNumber)
+    ? possibleActions[wsNumber]
+    : possibleActions["default"];
+
+  exec(action);
+};
+
+const readConfig = async () => {
+  return JSON.parse(fs.readFileSync("./config.json"));
 };
 
 const getFocusedWorkspace = (arrayOfWorkspaces) => {
   arrayOfWorkspaces.forEach((ws) => {
-    if (ws.focused) execWsSpecificCommand(ws.num);
+    if (ws.focused) execWsSpecificAction(ws.num);
   });
 };
 
@@ -28,3 +34,7 @@ exec("i3-msg -t get_workspaces", (error, stdout, stderr) => {
   }
   getFocusedWorkspace(Array.from(JSON.parse(stdout)));
 });
+
+const hasProperty = (object, key) => {
+  return object ? hasOwnProperty.call(object, key) : false;
+};
