@@ -1,5 +1,12 @@
-const { exec } = require("child_process");
 const fs = require("fs");
+const { exec } = require("child_process");
+
+const hasProperty = (object, key) => (object ? hasOwnProperty.call(object, key) : false);
+
+const readConfig = async () => {
+  const currentFolder = process.argv[1].substr(0, process.argv[1].lastIndexOf("/"));
+  return JSON.parse(fs.readFileSync(`${currentFolder}/config.json`));
+};
 
 const execWsSpecificAction = async (wsNumber) => {
   const config = await readConfig();
@@ -7,19 +14,12 @@ const execWsSpecificAction = async (wsNumber) => {
 
   if (hasProperty(config, requestedAction)) {
     const availableActions = config[requestedAction];
-
-    const action = hasProperty(availableActions, wsNumber)
+    exec(hasProperty(availableActions, wsNumber)
       ? availableActions[wsNumber]
-      : availableActions["default"];
-    exec(action);
+      : availableActions.default);
   } else {
     exec("notify-send 'action not found'");
   }
-};
-
-const readConfig = async () => {
-  const currentFolder = process.argv[1].substr(0, process.argv[1].lastIndexOf("\/"));
-  return JSON.parse(fs.readFileSync(`${currentFolder}/config.json`));
 };
 
 const getFocusedWorkspace = (arrayOfWorkspaces) => {
@@ -39,7 +39,3 @@ exec("i3-msg -t get_workspaces", (error, stdout, stderr) => {
   }
   getFocusedWorkspace(Array.from(JSON.parse(stdout)));
 });
-
-const hasProperty = (object, key) => {
-  return object ? hasOwnProperty.call(object, key) : false;
-};
