@@ -21,7 +21,7 @@ The example content of config.json looks like this:
 
 In this example we add the following line to our i3 config (adjust the path):
 ```
-bindsym $mod+F2 exec "node ~/path/to/i3-individual-workspace-actions/main.js" loremipsum
+bindsym $mod+F2 exec "node ~/path/to/i3-individual-workspace-actions/main.js loremipsum"
 ```
 
 The end of that line is the argument that we pass. In this case it is `loremipsum` which will be the key that will be used when looking for actions in the config file.
@@ -45,6 +45,6 @@ When pressing mod+F2 it will now open the *w3schools* website in your browser as
 
 The corresponding i3 config would look like this:
 ```
-bindsym $mod+F2 exec "node ~/path/to/i3-individual-workspace-actions/main.js" chrome
-bindsym $mod+F3 exec "node ~/path/to/i3-individual-workspace-actions/main.js" explorer
+bindsym $mod+F2 exec "node ~/path/to/i3-individual-workspace-actions/main.js chrome"
+bindsym $mod+F3 exec "node ~/path/to/i3-individual-workspace-actions/main.js explorer"
 ```
