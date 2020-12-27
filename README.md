@@ -29,3 +29,6 @@ bindsym $mod+F3 exec "node ~/path/to/i3-individual-workspace-actions/main.js not
 ```
 
 When pressing mod+F2 it will now open the *w3schools* website in your browser. When on WS7, it will instead open the *unsplash* website in your browser.
+
+### To Do:
+* Support workspace names
