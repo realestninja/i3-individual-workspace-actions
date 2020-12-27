@@ -7,7 +7,7 @@ This script checks which workspace is active and takes care of the requested act
 * [nodejs](https://nodejs.org/en/download/package-manager/)
 
 ## Usage:
-This is what the demo config looks like:
+Demo config:
 ```
 {
   "open-browser-demo": {
