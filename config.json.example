@@ -1,6 +1,0 @@
-{
-  "loremipsum": {
-    "7": "xdg-open 'https://unsplash.com/'",
-    "default": "xdg-open 'https://www.w3schools.com/'"
-  }
-}
