@@ -7,7 +7,8 @@ This script checks which workspace is active and takes care of the requested act
 * [nodejs](https://nodejs.org/en/download/package-manager/)
 
 ## Usage:
-Demo config:
+
+### Demo config:
 ```
 {
   "open-browser-demo": {
@@ -21,14 +22,11 @@ Demo config:
   }
 }
 ```
+When pressing mod+F2 it will now open the *w3schools* website in your browser. When on WS7, it will instead open the *unsplash* website in your browser.
 
-The corresponding lines in the i3config would look like this (adjust the path):
+### corresponding lines in the i3config
 ```
 bindsym $mod+F2 exec "node ~/path/to/i3-individual-workspace-actions/main.js open-browser-demo"
 bindsym $mod+F3 exec "node ~/path/to/i3-individual-workspace-actions/main.js notification-demo"
 ```
-
-When pressing mod+F2 it will now open the *w3schools* website in your browser. When on WS7, it will instead open the *unsplash* website in your browser.
-
-### To Do:
-* Support workspace names
+Pass the key that is used in the config file as argument.
