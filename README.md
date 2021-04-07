@@ -22,11 +22,14 @@ This script checks which workspace is active and takes care of the requested act
   }
 }
 ```
-When pressing mod+F2 it will now open the *w3schools* website in your browser. When on WS7, it will instead open the *unsplash* website in your browser.
 
-### corresponding lines in the i3config
+### Corresponding lines in the i3config for the demo to work
 ```
 bindsym $mod+F2 exec "node ~/path/to/i3-individual-workspace-actions/main.js open-browser-demo"
 bindsym $mod+F3 exec "node ~/path/to/i3-individual-workspace-actions/main.js notification-demo"
 ```
+
+When pressing mod+F2 it will now open the *w3schools* website in your browser. When on WS7, it will instead open the *unsplash* website in your browser.
+When pressing mod+F3 it will send different notifications depending on which workspace is active.
+
 Pass the key that is used in the config file as argument.
