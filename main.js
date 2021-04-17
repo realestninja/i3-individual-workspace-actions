@@ -8,14 +8,14 @@ const readConfig = async () => {
   return JSON.parse(fs.readFileSync(`${currentFolder}/config.json`));
 };
 
-const execWsSpecificAction = async (wsNumber) => {
+const execWorkspaceSpecificAction = async (workspaceNumber) => {
   const config = await readConfig();
   const requestedAction = process.argv[2];
 
   if (hasProperty(config, requestedAction)) {
     const availableActions = config[requestedAction];
-    exec(hasProperty(availableActions, wsNumber)
-      ? availableActions[wsNumber]
+    exec(hasProperty(availableActions, workspaceNumber)
+      ? availableActions[workspaceNumber]
       : availableActions.default);
   } else {
     exec("notify-send 'action not found'");
@@ -23,8 +23,8 @@ const execWsSpecificAction = async (wsNumber) => {
 };
 
 const getFocusedWorkspace = (arrayOfWorkspaces) => {
-  arrayOfWorkspaces.forEach((ws) => {
-    if (ws.focused) execWsSpecificAction(ws.num);
+  arrayOfWorkspaces.forEach((workspace) => {
+    if (workspace.focused) execWorkspaceSpecificAction(workspace.num);
   });
 };
 
